@@ -6,7 +6,7 @@
 //  Copyright © 2020 arvinq. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class NetworkManager {
     
@@ -50,6 +50,21 @@ class NetworkManager {
             } catch {
                 completion(.failure(.invalidData))
             }
+        }
+        
+        task.resume()
+    }
+    
+    func downloadImage(from urlString: String, completion: @escaping (UIImage)->Void) {
+        guard let url = URL(string: urlString) else { return }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in            
+            guard error == nil else { return }
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { return }
+            guard let data = data,
+                  let image = UIImage(data: data) else { return }
+            
+            completion(image)
         }
         
         task.resume()
