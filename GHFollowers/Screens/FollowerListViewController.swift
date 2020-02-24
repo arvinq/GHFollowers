@@ -10,9 +10,7 @@ import UIKit
 
 class FollowerListViewController: UIViewController {
 
-    enum Section {
-        case main
-    }
+    enum Section { case main }
     
     var username: String!
     
@@ -36,25 +34,11 @@ class FollowerListViewController: UIViewController {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createThreeItemCollectionView())
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeItemCollectionView(on: view))
         collectionView.backgroundColor = .systemBackground
         collectionView.register(FollowerCell.self, forCellWithReuseIdentifier: FollowerCell.reuseId)
         view.addSubview(collectionView)
         
-    }
-    
-    func createThreeItemCollectionView() -> UICollectionViewFlowLayout {
-        let width   		            = view.bounds.width
-        let padding: CGFloat            = 12
-        let minimumItemSpacing: CGFloat = 10
-        let availableWidth              = width - (padding * 2) - (minimumItemSpacing * 2)
-        let itemWidth                   = availableWidth / 3
-        
-        let flowLayout          = UICollectionViewFlowLayout()
-        flowLayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
-        flowLayout.itemSize     = CGSize(width: itemWidth, height: itemWidth + 40)
-        
-        return flowLayout
     }
     
     func getFollowers() {
