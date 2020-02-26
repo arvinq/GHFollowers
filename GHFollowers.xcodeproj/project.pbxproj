@@ -167,7 +167,7 @@
 				A2CF6F7223F98F5C009951C4 /* Models */,
 				A2CF6F7123F983F0009951C4 /* Support */,
 				A2CF6F7023F98391009951C4 /* Extension */,
-				A2CF6F6F23F98367009951C4 /* Custom Views */,
+				A2CF6F6F23F98367009951C4 /* CustomViews */,
 				A2CF6F6E23F98329009951C4 /* Screens */,
 				A2CF6F2F23EEB210009951C4 /* Assets.xcassets */,
 				A2CF6F3423EEB210009951C4 /* Info.plist */,
@@ -185,7 +185,7 @@
 			path = Screens;
 			sourceTree = "<group>";
 		};
-		A2CF6F6F23F98367009951C4 /* Custom Views */ = {
+		A2CF6F6F23F98367009951C4 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
 				A2832384240653D600080D0E /* Views */,
@@ -196,7 +196,7 @@
 				A283237F240653AB00080D0E /* ViewControllers */,
 				A2832376240024FA00080D0E /* Cells */,
 			);
-			path = "Custom Views";
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		A2CF6F7023F98391009951C4 /* Extension */ = {
