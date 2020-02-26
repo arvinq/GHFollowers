@@ -43,6 +43,7 @@ class FollowerListViewController: UIViewController {
         searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Search for a username"
         searchController.obscuresBackgroundDuringPresentation = false
+        navigationItem.hidesSearchBarWhenScrolling = false //making search bar always appear
         navigationItem.searchController = searchController
         
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeItemCollectionView(on: view))
