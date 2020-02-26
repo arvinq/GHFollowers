@@ -112,12 +112,18 @@ extension FollowerListViewController: UICollectionViewDelegate {
 
 extension FollowerListViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
-        guard let filter = searchController.searchBar.text, !filter.isEmpty else { return }
+        guard let filter = searchController.searchBar.text, !filter.isEmpty else {
+            filteredFollowers.removeAll()
+            updateData(on: followers)
+            return
+        }
+        
         filteredFollowers = followers.filter{ $0.login.lowercased().contains(filter.lowercased()) }
         updateData(on: filteredFollowers)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        filteredFollowers.removeAll()
         updateData(on: followers)
     }
 }
