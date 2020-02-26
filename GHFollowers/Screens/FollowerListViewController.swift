@@ -71,7 +71,10 @@ class FollowerListViewController: UIViewController {
                     return
                 }
                 
-                self.updateData(on: self.followers)
+                // call our search, in cases where the user has typed something, else,
+                // it will just update the cv using followers in return part
+                DispatchQueue.main.async { self.updateSearchResults(for: self.searchController) }
+                
             case .failure(let errorMessage):
                 self.presentGFAlertOnMainThread(title: "Bad Request", message: errorMessage.rawValue, buttonTitle: "Ok")
             }
