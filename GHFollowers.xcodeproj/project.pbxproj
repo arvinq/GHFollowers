@@ -29,6 +29,7 @@
 		A2CF6F6D23F96378009951C4 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF6F6C23F96378009951C4 /* UIViewController+Ext.swift */; };
 		A2CF6F7423F98F77009951C4 /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF6F7323F98F77009951C4 /* Follower.swift */; };
 		A2CF6F7623F98FFA009951C4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF6F7523F98FF9009951C4 /* User.swift */; };
+		A2EA27952406BEB700F59E45 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EA27942406BEB700F59E45 /* UserInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		A2CF6F6C23F96378009951C4 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		A2CF6F7323F98F77009951C4 /* Follower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Follower.swift; sourceTree = "<group>"; };
 		A2CF6F7523F98FF9009951C4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A2EA27942406BEB700F59E45 /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 				A2CF6F3A23F17011009951C4 /* SearchViewController.swift */,
 				A2CF6F6223F937F5009951C4 /* FollowerListViewController.swift */,
 				A2CF6F3C23F17046009951C4 /* FavoritesListViewController.swift */,
+				A2EA27942406BEB700F59E45 /* UserInfoViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2CF6F4123F197CC009951C4 /* GFTextField.swift in Sources */,
+				A2EA27952406BEB700F59E45 /* UserInfoViewController.swift in Sources */,
 				A2CF6F3B23F17011009951C4 /* SearchViewController.swift in Sources */,
 				A2CF6F6D23F96378009951C4 /* UIViewController+Ext.swift in Sources */,
 				A2CF6F3F23F1887E009951C4 /* GFButton.swift in Sources */,
