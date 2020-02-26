@@ -42,7 +42,7 @@ class FollowerListViewController: UIViewController {
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Search for a username"
-        ///searchController.obscuresBackgroundDuringPresentation = false //defaults to true. set to false if you want a dim filtered view
+        searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
         
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeItemCollectionView(on: view))
@@ -57,7 +57,6 @@ class FollowerListViewController: UIViewController {
         showLoadingScreen()
         NetworkManager.shared.getFollowers(for: username, page: pageNumber) { [weak self] result in //capture list
             guard let self = self else { return }
-            
             self.dismissLoadingScreen()
             
             switch result {
