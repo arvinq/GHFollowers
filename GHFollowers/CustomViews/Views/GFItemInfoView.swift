@@ -25,7 +25,7 @@ class GFItemInfoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureViews() {
+    private func configureViews() {
         symbolImageView = UIImageView()
         symbolImageView.translatesAutoresizingMaskIntoConstraints = false
         symbolImageView.tintColor = .label
@@ -38,7 +38,7 @@ class GFItemInfoView: UIView {
         self.addSubview(countLabel)
     }
     
-    func configureConstraints() {
+    private func configureConstraints() {
         NSLayoutConstraint.activate([
             symbolImageView.topAnchor.constraint(equalTo: self.topAnchor),
             symbolImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
