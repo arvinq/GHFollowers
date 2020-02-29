@@ -17,6 +17,7 @@ class UserInfoViewController: UIViewController {
     private var headerView: UIView          = UIView()
     private var itemViewProfile: UIView     = UIView()
     private var itemViewFollower: UIView    = UIView()
+    private var dateLabel: GFBodyLabel      = GFBodyLabel(textAlignment: .center)
     private var itemViews: [UIView] = []
     
     override func viewDidLoad() {
@@ -32,7 +33,7 @@ class UserInfoViewController: UIViewController {
         doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
         navigationItem.setRightBarButton(doneButton, animated: true)
         
-        itemViews.append(contentsOf: [headerView, itemViewProfile, itemViewFollower])
+        itemViews.append(contentsOf: [headerView, itemViewProfile, itemViewFollower, dateLabel])
         
         for itemView in itemViews {
             itemView.translatesAutoresizingMaskIntoConstraints = false
@@ -60,7 +61,10 @@ class UserInfoViewController: UIViewController {
             itemViewProfile.heightAnchor.constraint(equalToConstant: itemHeight),
             
             itemViewFollower.topAnchor.constraint(equalTo: itemViewProfile.bottomAnchor, constant: padding),
-            itemViewFollower.heightAnchor.constraint(equalToConstant: itemHeight)
+            itemViewFollower.heightAnchor.constraint(equalToConstant: itemHeight),
+            
+            dateLabel.topAnchor.constraint(equalTo: itemViewFollower.bottomAnchor, constant: padding),
+            dateLabel.heightAnchor.constraint(equalToConstant: 18)
         ])
     }
     
@@ -74,6 +78,7 @@ class UserInfoViewController: UIViewController {
                     self.add(childVC: GFUserInfoHeaderViewController(user: user), to: self.headerView)
                     self.add(childVC: GFRepoItemInfoVC(user: user), to: self.itemViewProfile)
                     self.add(childVC: GFFollowerItemInfoVC(user: user), to: self.itemViewFollower)
+                    self.dateLabel.text = "GitHub since \(user.createdAt.convertToDisplayFormat())"
                 }
             case .failure(let error):
                 self.presentGFAlertOnMainThread(title: "Bad Request", message: error.rawValue, buttonTitle: "Ok")
