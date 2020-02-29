@@ -20,7 +20,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .systemBackground
-        configureSubviews()
+        configureViews()
         configureConstraints()
         configureGestureKeyboardDismiss()
     }
@@ -51,7 +51,7 @@ class SearchViewController: UIViewController {
         navigationController?.pushViewController(followerListVC, animated: true)
     }
     
-    private func configureSubviews() {
+    private func configureViews() {
         logoImageView = UIImageView()
         view.addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false

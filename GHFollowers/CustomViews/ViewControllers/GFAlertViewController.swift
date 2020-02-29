@@ -35,7 +35,7 @@ class GFAlertViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
-        configureSubviews()
+        configureViews()
         configureConstraints()
     }
     
@@ -43,7 +43,7 @@ class GFAlertViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    private func configureSubviews() {
+    private func configureViews() {
         containerView                    = UIView()
         containerView.backgroundColor    = .systemBackground
         containerView.layer.cornerRadius = 16
