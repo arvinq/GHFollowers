@@ -33,8 +33,6 @@ class UserInfoViewController: UIViewController {
         navigationItem.setRightBarButton(doneButton, animated: true)
         
         itemViews.append(contentsOf: [headerView, itemViewProfile, itemViewFollower])
-        itemViewProfile.backgroundColor = .systemPink
-        itemViewFollower.backgroundColor = .systemBlue
         
         for itemView in itemViews {
             itemView.translatesAutoresizingMaskIntoConstraints = false
@@ -74,6 +72,8 @@ class UserInfoViewController: UIViewController {
             case .success(let user):
                 DispatchQueue.main.async {
                     self.add(childVC: GFUserInfoHeaderViewController(user: user), to: self.headerView)
+                    self.add(childVC: GFRepoItemInfoVC(user: user), to: self.itemViewProfile)
+                    self.add(childVC: GFFollowerItemInfoVC(user: user), to: self.itemViewFollower)
                 }
             case .failure(let error):
                 self.presentGFAlertOnMainThread(title: "Bad Request", message: error.rawValue, buttonTitle: "Ok")
