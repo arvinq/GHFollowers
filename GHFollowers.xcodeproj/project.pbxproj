@@ -33,6 +33,7 @@
 		A2EA2797240A832C00F59E45 /* GFUserInfoHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EA2796240A832C00F59E45 /* GFUserInfoHeaderViewController.swift */; };
 		A2EA2799240A834E00F59E45 /* GFSecondaryTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EA2798240A834E00F59E45 /* GFSecondaryTitleLabel.swift */; };
 		A2EA279B240A97CB00F59E45 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EA279A240A97CB00F59E45 /* Constants.swift */; };
+		A2EA279D240AB72E00F59E45 /* GFItemInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EA279C240AB72E00F59E45 /* GFItemInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		A2EA2796240A832C00F59E45 /* GFUserInfoHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFUserInfoHeaderViewController.swift; sourceTree = "<group>"; };
 		A2EA2798240A834E00F59E45 /* GFSecondaryTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFSecondaryTitleLabel.swift; sourceTree = "<group>"; };
 		A2EA279A240A97CB00F59E45 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A2EA279C240AB72E00F59E45 /* GFItemInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFItemInfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				A28323852406547200080D0E /* GFEmptyStateView.swift */,
+				A2EA279C240AB72E00F59E45 /* GFItemInfoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				A2B08C3F23FC24A5002A1FD0 /* NetworkManager.swift in Sources */,
 				A2CF6F2923EEB20A009951C4 /* SceneDelegate.swift in Sources */,
 				A2CF6F6923F9561B009951C4 /* GFBodyLabel.swift in Sources */,
+				A2EA279D240AB72E00F59E45 /* GFItemInfoView.swift in Sources */,
 				A2EA2797240A832C00F59E45 /* GFUserInfoHeaderViewController.swift in Sources */,
 				A2EA279B240A97CB00F59E45 /* Constants.swift in Sources */,
 			);
