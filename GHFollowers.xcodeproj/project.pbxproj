@@ -182,8 +182,8 @@
 			children = (
 				A2CF6F3A23F17011009951C4 /* SearchViewController.swift */,
 				A2CF6F6223F937F5009951C4 /* FollowerListViewController.swift */,
-				A2CF6F3C23F17046009951C4 /* FavoritesListViewController.swift */,
 				A2EA27942406BEB700F59E45 /* UserInfoViewController.swift */,
+				A2CF6F3C23F17046009951C4 /* FavoritesListViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";

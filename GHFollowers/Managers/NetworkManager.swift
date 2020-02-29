@@ -56,6 +56,45 @@ class NetworkManager {
         task.resume()
     }
     
+    func getUserInfo(for username: String, completion: @escaping (Result<User, GFError>) -> Void) {
+        let endPoint = baseUrl + "/users/\(username)"
+        
+        guard let url = URL(string: endPoint) else {
+            completion(.failure(.invalidUsername))
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            guard error == nil else {
+                completion(.failure(.unableToComplete))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completion(.failure(.invalidResponse))
+                    return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.invalidData))
+                return
+            }
+            
+            do {
+                // decoder because we're receiving a data from the server
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                
+                let user = try decoder.decode(User.self, from: data)
+                completion(.success(user))
+            } catch {
+                completion(.failure(.invalidData))
+            }
+        }
+        
+        task.resume()
+    }
+    
     func downloadImage(from urlString: String, completion: @escaping (UIImage)->Void) {
         
         let cacheKey = NSString(string: urlString)
