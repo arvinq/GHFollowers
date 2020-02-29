@@ -14,7 +14,10 @@ class UserInfoViewController: UIViewController {
     var doneButton: UIBarButtonItem!
     
     // ChildVC containers
-    private var headerView: UIView!
+    private var headerView: UIView          = UIView()
+    private var itemViewProfile: UIView     = UIView()
+    private var itemViewFollower: UIView    = UIView()
+    private var itemViews: [UIView] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,17 +32,37 @@ class UserInfoViewController: UIViewController {
         doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
         navigationItem.setRightBarButton(doneButton, animated: true)
         
-        headerView = UIView()
-        headerView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(headerView)
+        itemViews.append(contentsOf: [headerView, itemViewProfile, itemViewFollower])
+        itemViewProfile.backgroundColor = .systemPink
+        itemViewFollower.backgroundColor = .systemBlue
+        
+        for itemView in itemViews {
+            itemView.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(itemView)
+        }
     }
     
     func configureConstraints() {
+        let padding: CGFloat = 20.0
+        let itemHeight: CGFloat = 140.0
+        
+        // Configuring the leading and trailing constraints of the itemViews
+        for itemView in itemViews {
+            NSLayoutConstraint.activate([
+                itemView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+                itemView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding)
+            ])
+        }
+        
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 180)
+            headerView.heightAnchor.constraint(equalToConstant: 180),
+            
+            itemViewProfile.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding),
+            itemViewProfile.heightAnchor.constraint(equalToConstant: itemHeight),
+            
+            itemViewFollower.topAnchor.constraint(equalTo: itemViewProfile.bottomAnchor, constant: padding),
+            itemViewFollower.heightAnchor.constraint(equalToConstant: itemHeight)
         ])
     }
     
