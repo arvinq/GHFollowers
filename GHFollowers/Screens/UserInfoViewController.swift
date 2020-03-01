@@ -31,7 +31,7 @@ class UserInfoViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
-        navigationItem.setRightBarButton(doneButton, animated: true)
+        navigationItem.setLeftBarButton(doneButton, animated: true)
         
         itemViews.append(contentsOf: [headerView, itemViewProfile, itemViewFollower, dateLabel])
         
@@ -108,7 +108,7 @@ extension UserInfoViewController: GitHubFollowersTappable {
     func didTappedGetFollowers(on user: User) {
         let followerListVC = FollowerListViewController(user: user)
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
-        followerListVC.navigationItem.rightBarButtonItem = doneButton
+        followerListVC.navigationItem.setLeftBarButton(doneButton, animated: true)
         followerListVC.navigationItem.title = user.login
         
         let navigationController = UINavigationController(rootViewController: followerListVC)

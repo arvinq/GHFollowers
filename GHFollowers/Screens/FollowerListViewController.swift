@@ -19,6 +19,8 @@ class FollowerListViewController: UIViewController {
     
     var followers: [Follower] = []
     var filteredFollowers: [Follower] = []
+    
+    var addBarButton: UIBarButtonItem!
     var searchController: UISearchController!
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Follower>!
@@ -49,6 +51,9 @@ class FollowerListViewController: UIViewController {
     func configureView() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        addBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        navigationItem.setRightBarButton(addBarButton, animated: true)
         
         searchController = UISearchController()
         searchController.searchResultsUpdater = self
@@ -109,6 +114,10 @@ class FollowerListViewController: UIViewController {
         snapshot.appendSections([.main])
         snapshot.appendItems(followers)
         dataSource.apply(snapshot, animatingDifferences: true)
+    }
+    
+    @objc func addButtonTapped() {
+        print("tapped")
     }
 }
 
