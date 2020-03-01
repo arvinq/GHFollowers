@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A25BBEB1240AD43A00651F97 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BBEB0240AD43A00651F97 /* Date+Ext.swift */; };
+		A25BBEB3240BBF2A00651F97 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BBEB2240BBF2A00651F97 /* PersistenceManager.swift */; };
 		A28323782400253000080D0E /* FollowerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28323772400253000080D0E /* FollowerCell.swift */; };
 		A283237A240028FE00080D0E /* GFAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2832379240028FE00080D0E /* GFAvatarImageView.swift */; };
 		A283237E2404123C00080D0E /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A283237D2404123C00080D0E /* UIHelper.swift */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		A25BBEB0240AD43A00651F97 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
+		A25BBEB2240BBF2A00651F97 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		A28323772400253000080D0E /* FollowerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerCell.swift; sourceTree = "<group>"; };
 		A2832379240028FE00080D0E /* GFAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFAvatarImageView.swift; sourceTree = "<group>"; };
 		A283237D2404123C00080D0E /* UIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				A2B08C3E23FC24A5002A1FD0 /* NetworkManager.swift */,
+				A25BBEB2240BBF2A00651F97 /* PersistenceManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				A2CF6F6523F93D70009951C4 /* String+Ext.swift in Sources */,
 				A2B08C4223FECCC6002A1FD0 /* ErrorMessage.swift in Sources */,
 				A283237E2404123C00080D0E /* UIHelper.swift in Sources */,
+				A25BBEB3240BBF2A00651F97 /* PersistenceManager.swift in Sources */,
 				A2B08C3F23FC24A5002A1FD0 /* NetworkManager.swift in Sources */,
 				A2EA279F240AC4F300F59E45 /* GFItemInfoViewController.swift in Sources */,
 				A25BBEB1240AD43A00651F97 /* Date+Ext.swift in Sources */,
