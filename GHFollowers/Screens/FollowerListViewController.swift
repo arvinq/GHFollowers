@@ -23,6 +23,17 @@ class FollowerListViewController: UIViewController {
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Follower>!
     
+    convenience init(user: User) {
+        self.init()
+        self.username = user.login
+    }
+    
+    init() { super.init(nibName: nil, bundle: nil) }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -120,7 +131,6 @@ extension FollowerListViewController: UICollectionViewDelegate {
         
         let userInfoVC = UserInfoViewController()
         userInfoVC.username = follower.login
-        userInfoVC.userInfoDelegate = self
         
         let tempNavigationController = UINavigationController(rootViewController: userInfoVC)
         present(tempNavigationController, animated: true)
@@ -144,32 +154,5 @@ extension FollowerListViewController: UISearchResultsUpdating, UISearchBarDelega
         isSearching = false
         filteredFollowers.removeAll()
         updateData(on: followers)
-    }
-}
-
-extension FollowerListViewController: UserInfoVcDelegate {
-    func shouldShowProfile(of user: User) {
-        title = user.login
-        
-        guard user.followers != 0 else {
-            let message = "This user doesn't have any followers. Go follow them. 😊"
-            DispatchQueue.main.async { self.showEmptyStateView(withMessage: message, in: self.view) }
-            return
-        }
-        
-        //reset everything in the followerListVC since we will have a new user to fetch
-        followers.removeAll()
-        filteredFollowers.removeAll()
-        username = user.login
-        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
-
-        //if the profile has been searched and the user has clicked the profile's followers
-        if isSearching {
-            searchController.searchBar.text = ""
-            searchController.dismiss(animated: true)
-            isSearching = false
-        }
-        
-        getFollowers(forUsername: user.login, pageNumber: 1)
     }
 }

@@ -8,7 +8,21 @@
 
 import Foundation
 
+protocol GitHubFollowersTappable: class {
+    func didTappedGetFollowers(on user: User)
+}
 class GFFollowerItemInfoVC: GFItemInfoViewController {
+    
+    weak var delegate: GitHubFollowersTappable?
+    
+    init(user: User, delegate: GitHubFollowersTappable? = nil) {
+        super.init(user: user)
+        self.delegate = delegate
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +36,6 @@ class GFFollowerItemInfoVC: GFItemInfoViewController {
     }
     
     override func actionButtonTapped() {
-        itemInfoDelegate.didTappedGetFollowers(on: user)
+        delegate?.didTappedGetFollowers(on: user)
     }
 }

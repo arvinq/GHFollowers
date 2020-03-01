@@ -8,11 +8,6 @@
 
 import UIKit
 
-protocol GFItemInfoVcDelegate: class {
-    func didTappedGitHubProfile(on user: User)
-    func didTappedGetFollowers(on user: User)
-}
-
 class GFItemInfoViewController: UIViewController {
 
     var stackView: UIStackView!
@@ -21,7 +16,6 @@ class GFItemInfoViewController: UIViewController {
     var actionButton: GFButton!
     
     var user: User!
-    weak var itemInfoDelegate: GFItemInfoVcDelegate!
     
     init(user: User) {
         super.init(nibName: nil, bundle: nil)

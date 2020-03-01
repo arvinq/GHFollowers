@@ -8,15 +8,10 @@
 
 import UIKit
 
-protocol UserInfoVcDelegate: class {
-    func shouldShowProfile(of user: User)
-}
-
 class UserInfoViewController: UIViewController {
 
     var username: String!
     var doneButton: UIBarButtonItem!
-    weak var userInfoDelegate: UserInfoVcDelegate!
     
     // ChildVC containers
     private var headerView: UIView          = UIView()
@@ -87,15 +82,9 @@ class UserInfoViewController: UIViewController {
     }
     
     func configureItemInfo(for user: User) {
-        let repoItemInfoVC = GFRepoItemInfoVC(user: user)
-        repoItemInfoVC.itemInfoDelegate = self
-        
-        let followerItemInfoVC = GFFollowerItemInfoVC(user: user)
-        followerItemInfoVC.itemInfoDelegate = self
-        
         self.add(childVC: GFUserInfoHeaderViewController(user: user), to: self.headerView)
-        self.add(childVC: repoItemInfoVC, to: self.itemViewProfile)
-        self.add(childVC: followerItemInfoVC, to: self.itemViewFollower)
+        self.add(childVC: GFRepoItemInfoVC(user: user, delegate: self), to: self.itemViewProfile)
+        self.add(childVC: GFFollowerItemInfoVC(user: user, delegate: self), to: self.itemViewFollower)
         self.dateLabel.text = "GitHub since \(user.createdAt.convertToDisplayFormat())"
     }
     
@@ -104,7 +93,7 @@ class UserInfoViewController: UIViewController {
     }
 }
 
-extension UserInfoViewController: GFItemInfoVcDelegate {
+extension UserInfoViewController: GitHubProfileTappable {
     func didTappedGitHubProfile(on user: User) {
        guard let url = URL(string: user.htmlUrl) else {
             presentGFAlertOnMainThread(title: "URL Issue", message: "User doesn't have a valid viewable profile", buttonTitle: "Ok")
@@ -113,9 +102,17 @@ extension UserInfoViewController: GFItemInfoVcDelegate {
         
         showSafariWebView(on: url)
     }
-    
+}
+
+extension UserInfoViewController: GitHubFollowersTappable {
     func didTappedGetFollowers(on user: User) {
-        userInfoDelegate.shouldShowProfile(of: user)
-        dismiss(animated: true)
+        let followerListVC = FollowerListViewController(user: user)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
+        followerListVC.navigationItem.rightBarButtonItem = doneButton
+        followerListVC.navigationItem.title = user.login
+        
+        let navigationController = UINavigationController(rootViewController: followerListVC)
+        
+        present(navigationController, animated: true)
     }
 }
