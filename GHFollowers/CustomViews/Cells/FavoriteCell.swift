@@ -24,6 +24,11 @@ class FavoriteCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func set(favorite: Follower) {
+        avatarImage.downloadImage(from: favorite.avatarUrl)
+        usernameLabel.text = favorite.login
+    }
+    
     func configureViews() {
         avatarImage = GFAvatarImageView(frame: .zero)
         addSubview(avatarImage)
