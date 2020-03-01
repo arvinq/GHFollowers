@@ -29,6 +29,8 @@ class GFEmptyStateView: UIView {
     }
     
     func configure() {
+        backgroundColor = .systemBackground
+        
         messageLabel                = GFTitleLabel(textAlignment: .center, fontSize: 28)
         messageLabel.textColor      = .secondaryLabel
         messageLabel.numberOfLines  = 3

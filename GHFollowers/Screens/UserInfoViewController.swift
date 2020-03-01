@@ -8,10 +8,15 @@
 
 import UIKit
 
+protocol UserInfoVcDelegate: class {
+    func shouldShowProfile(of user: User)
+}
+
 class UserInfoViewController: UIViewController {
 
     var username: String!
     var doneButton: UIBarButtonItem!
+    weak var userInfoDelegate: UserInfoVcDelegate!
     
     // ChildVC containers
     private var headerView: UIView          = UIView()
@@ -110,5 +115,7 @@ extension UserInfoViewController: GFItemInfoVcDelegate {
     }
     
     func didTappedGetFollowers(on user: User) {
+        userInfoDelegate.shouldShowProfile(of: user)
+        dismiss(animated: true)
     }
 }
