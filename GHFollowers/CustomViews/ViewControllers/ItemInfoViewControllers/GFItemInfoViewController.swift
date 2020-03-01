@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol GFItemInfoVcDelegate: class {
+    func didTappedGitHubProfile(on user: User)
+    func didTappedGetFollowers(on user: User)
+}
+
 class GFItemInfoViewController: UIViewController {
 
     var stackView: UIStackView!
@@ -16,6 +21,7 @@ class GFItemInfoViewController: UIViewController {
     var actionButton: GFButton!
     
     var user: User!
+    weak var itemInfoDelegate: GFItemInfoVcDelegate!
     
     init(user: User) {
         super.init(nibName: nil, bundle: nil)
@@ -51,6 +57,7 @@ class GFItemInfoViewController: UIViewController {
         stackView.addArrangedSubview(itemInfoViewTwo)
         
         actionButton = GFButton()
+        actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
         view.addSubview(actionButton)
     }
     
@@ -69,4 +76,7 @@ class GFItemInfoViewController: UIViewController {
             actionButton.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
+    
+    // actionButtonTapped is being overriden by subclasses for own implementation hence empty
+    @objc func actionButtonTapped() { }
 }

@@ -74,19 +74,41 @@ class UserInfoViewController: UIViewController {
             
             switch result {
             case .success(let user):
-                DispatchQueue.main.async {
-                    self.add(childVC: GFUserInfoHeaderViewController(user: user), to: self.headerView)
-                    self.add(childVC: GFRepoItemInfoVC(user: user), to: self.itemViewProfile)
-                    self.add(childVC: GFFollowerItemInfoVC(user: user), to: self.itemViewFollower)
-                    self.dateLabel.text = "GitHub since \(user.createdAt.convertToDisplayFormat())"
-                }
+                DispatchQueue.main.async { self.configureItemInfo(for: user) }
             case .failure(let error):
                 self.presentGFAlertOnMainThread(title: "Bad Request", message: error.rawValue, buttonTitle: "Ok")
             }
         }
     }
     
+    func configureItemInfo(for user: User) {
+        let repoItemInfoVC = GFRepoItemInfoVC(user: user)
+        repoItemInfoVC.itemInfoDelegate = self
+        
+        let followerItemInfoVC = GFFollowerItemInfoVC(user: user)
+        followerItemInfoVC.itemInfoDelegate = self
+        
+        self.add(childVC: GFUserInfoHeaderViewController(user: user), to: self.headerView)
+        self.add(childVC: repoItemInfoVC, to: self.itemViewProfile)
+        self.add(childVC: followerItemInfoVC, to: self.itemViewFollower)
+        self.dateLabel.text = "GitHub since \(user.createdAt.convertToDisplayFormat())"
+    }
+    
     @objc func donePressed() {
         dismiss(animated: true)
+    }
+}
+
+extension UserInfoViewController: GFItemInfoVcDelegate {
+    func didTappedGitHubProfile(on user: User) {
+       guard let url = URL(string: user.htmlUrl) else {
+            presentGFAlertOnMainThread(title: "URL Issue", message: "User doesn't have a valid viewable profile", buttonTitle: "Ok")
+            return
+        }
+        
+        showSafariWebView(on: url)
+    }
+    
+    func didTappedGetFollowers(on user: User) {
     }
 }

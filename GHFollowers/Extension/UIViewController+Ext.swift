@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 fileprivate var loadingContainerView: UIView!
 
@@ -51,6 +52,12 @@ extension UIViewController {
         let emptyStateView = GFEmptyStateView(message: message)
         emptyStateView.frame = view.bounds
         view.addSubview(emptyStateView)
+    }
+    
+    func showSafariWebView(on url: URL) {
+        let safariWebView = SFSafariViewController(url: url)
+        safariWebView.preferredControlTintColor = .systemGreen
+        present(safariWebView, animated: true)
     }
     
     func add(childVC: UIViewController, to containerView: UIView) {
