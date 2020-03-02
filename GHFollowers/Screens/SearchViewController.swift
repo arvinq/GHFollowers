@@ -14,6 +14,8 @@ class SearchViewController: UIViewController {
     private var usernameTextField       : GFTextField!
     private var fetchFollowersButton    : GFButton!
     
+    private var logoImageViewTopConstraint: NSLayoutConstraint!
+    
     private var isUsernameEntered: Bool { return !usernameTextField.text!.isEmpty }
     
     override func viewDidLoad() {
@@ -67,12 +69,16 @@ class SearchViewController: UIViewController {
     }
     
     private func configureConstraints() {
+        logoImageViewTopConstraint = logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+        logoImageViewTopConstraint.constant = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 20 : 80
+        
         NSLayoutConstraint.activate([
             // logoImageView
             logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logoImageView.heightAnchor.constraint(equalToConstant: 200),
             logoImageView.widthAnchor.constraint(equalToConstant: 200),
+            logoImageViewTopConstraint,
             
             // usernameTextField
             usernameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
