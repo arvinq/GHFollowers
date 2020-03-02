@@ -12,10 +12,13 @@ class GFEmptyStateView: UIView {
 
     var messageLabel: GFTitleLabel!
     var imageContainer: UIImageView!
+    var messageLabelCenterYConstraint: NSLayoutConstraint!
+    var imageContainerBottomConstraint: NSLayoutConstraint!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        configureViews()
+        configureConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -27,7 +30,7 @@ class GFEmptyStateView: UIView {
         messageLabel.text = message
     }
     
-    func configure() {
+    func configureViews() {
         backgroundColor = .systemBackground
         
         messageLabel                = GFTitleLabel(textAlignment: .center, fontSize: 28)
@@ -39,17 +42,27 @@ class GFEmptyStateView: UIView {
         imageContainer.image    = Images.emptyStateLogo
         imageContainer.translatesAutoresizingMaskIntoConstraints = false
         addSubview(imageContainer)
+    }
+    
+    func configureConstraints() {
+        messageLabelCenterYConstraint = messageLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+        messageLabelCenterYConstraint.constant = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? -80 : -150
+        
+        imageContainerBottomConstraint = imageContainer.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        imageContainerBottomConstraint.constant = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 80 : 40
         
         NSLayoutConstraint.activate([
             messageLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 40),
             messageLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -40),
-            messageLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -150),
             messageLabel.heightAnchor.constraint(equalToConstant: 200),
+            messageLabelCenterYConstraint,
             
             imageContainer.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1.3),
             imageContainer.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1.3),
             imageContainer.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 180),
-            imageContainer.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 40)
+            imageContainerBottomConstraint
+            
         ])
     }
+    
 }
