@@ -16,6 +16,10 @@ enum SFSymbols {
     static let follower = "person.2"
 }
 
+enum Images {
+    static let ghLogo = UIImage(named: "gh-logo")
+}
+
 enum ItemInfoType: String {
     case repos     = "Public Repose"
     case gists     = "Public Gists"

@@ -35,7 +35,7 @@ class SearchViewController: UIViewController {
     private func configureGestureKeyboardDismiss() {
         // we use self.view as target instead of self because the view has the method and not the viewController.
         // if we have an @objc function called in our action, we can have a target of self
-        let tapGesture = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tapGesture)
     }
     
@@ -57,7 +57,7 @@ class SearchViewController: UIViewController {
         logoImageView = UIImageView()
         view.addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.image = UIImage(named: "gh-logo")!
+        logoImageView.image = Images.ghLogo
         
         usernameTextField = GFTextField()
         usernameTextField.delegate = self
