@@ -30,6 +30,12 @@ class FollowerListViewController: UIViewController {
         self.username = user.login
     }
     
+    convenience init(username: String) {
+        self.init()
+        self.username = username
+        title = username
+    }
+    
     init() { super.init(nibName: nil, bundle: nil) }
     
     required init?(coder: NSCoder) {
