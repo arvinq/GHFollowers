@@ -16,6 +16,7 @@ class FollowerListViewController: UIViewController {
     var pageNumber: Int = 1
     var hasMoreFollowers: Bool = true
     var isSearching: Bool = false
+    var isLoadingMoreFollowers: Bool = false
     
     var followers: [Follower] = []
     var filteredFollowers: [Follower] = []
@@ -79,6 +80,8 @@ class FollowerListViewController: UIViewController {
     
     func getFollowers(forUsername username: String, pageNumber: Int) {
         showLoadingScreen()
+        isLoadingMoreFollowers = true
+        
         NetworkManager.shared.getFollowers(for: username, page: pageNumber) { [weak self] result in //capture list
             guard let self = self else { return }
             self.dismissLoadingScreen()
@@ -103,6 +106,7 @@ class FollowerListViewController: UIViewController {
                 self.presentGFAlertOnMainThread(title: "Bad Request", message: errorMessage.rawValue, buttonTitle: "Ok")
             }
             
+            self.isLoadingMoreFollowers = false
         }
     }
     
@@ -154,7 +158,7 @@ extension FollowerListViewController: UICollectionViewDelegate {
         let height          = scrollView.bounds.height
         
         if offsetY > contentHeight - height {
-            guard hasMoreFollowers else { return }
+            guard hasMoreFollowers, !isLoadingMoreFollowers else { return }
             pageNumber += 1
             getFollowers(forUsername: username, pageNumber: pageNumber)
         }
