@@ -85,7 +85,8 @@ class UserInfoViewController: UIViewController {
         self.add(childVC: GFUserInfoHeaderViewController(user: user), to: self.headerView)
         self.add(childVC: GFRepoItemInfoVC(user: user, delegate: self), to: self.itemViewProfile)
         self.add(childVC: GFFollowerItemInfoVC(user: user, delegate: self), to: self.itemViewFollower)
-        self.dateLabel.text = "GitHub since \(user.createdAt.convertToDisplayFormat())"
+        self.dateLabel.text = "GitHub since \(user.createdAt.convertToString())"
+        //since we have now changed createdAt to Date we are just converting the date to string
     }
     
     @objc func donePressed() {
