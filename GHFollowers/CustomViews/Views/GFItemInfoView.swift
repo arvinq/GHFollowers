@@ -60,13 +60,13 @@ class GFItemInfoView: UIView {
     func set(itemInfoType: ItemInfoType, withCount count: Int) {
         switch itemInfoType {
             case .repos:
-                symbolImageView.image = UIImage(systemName: SFSymbols.repos)
+                symbolImageView.image = SFSymbols.repos
             case .gists:
-                symbolImageView.image = UIImage(systemName: SFSymbols.gists)
+                symbolImageView.image = SFSymbols.gists
             case .follower:
-                symbolImageView.image = UIImage(systemName: SFSymbols.follower)
+                symbolImageView.image = SFSymbols.follower
             case .following:
-                symbolImageView.image = UIImage(systemName: SFSymbols.following)
+                symbolImageView.image = SFSymbols.following
         }
         
         titleLabel.text = itemInfoType.rawValue

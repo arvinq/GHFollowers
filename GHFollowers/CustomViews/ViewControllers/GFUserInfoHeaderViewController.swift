@@ -47,7 +47,7 @@ class GFUserInfoHeaderViewController: UIViewController {
         view.addSubview(nameLabel)
         
         locationImageView           = UIImageView()
-        locationImageView.image     = UIImage(systemName: SFSymbols.location)
+        locationImageView.image     = SFSymbols.location
         locationImageView.tintColor = .secondaryLabel
         locationImageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(locationImageView)

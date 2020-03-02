@@ -34,8 +34,8 @@ extension UIViewController {
         loadingContainerView.addSubview(activityIndicator)
         
         NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            activityIndicator.centerXAnchor.constraint(equalTo: loadingContainerView.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: loadingContainerView.centerYAnchor)
         ])
         
         activityIndicator.startAnimating()
