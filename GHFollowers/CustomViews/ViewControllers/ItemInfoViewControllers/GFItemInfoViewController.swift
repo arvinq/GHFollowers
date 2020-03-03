@@ -42,7 +42,6 @@ class GFItemInfoViewController: UIViewController {
         stackView.axis = .horizontal
         stackView.distribution = .equalSpacing
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(stackView)
         
         itemInfoViewOne = GFItemInfoView()
         stackView.addArrangedSubview(itemInfoViewOne)
@@ -52,7 +51,8 @@ class GFItemInfoViewController: UIViewController {
         
         actionButton = GFButton()
         actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
-        view.addSubview(actionButton)
+        
+        view.addSubviews(stackView, actionButton)
     }
     
     private func configureConstraints() {

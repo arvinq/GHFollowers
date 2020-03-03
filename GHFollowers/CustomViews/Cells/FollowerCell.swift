@@ -31,10 +31,9 @@ class FollowerCell: UICollectionViewCell {
     
     func configure() {
         avatarImage = GFAvatarImageView(frame: .zero)
-        addSubview(avatarImage)
-        
         usernameLabel = GFTitleLabel(textAlignment: .center, fontSize: 16)
-        addSubview(usernameLabel)
+        
+        addSubviews(avatarImage, usernameLabel)
     }
     
     func configureConstraints() {

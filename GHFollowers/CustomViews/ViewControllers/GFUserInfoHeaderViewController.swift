@@ -36,30 +36,26 @@ class GFUserInfoHeaderViewController: UIViewController {
     func configureViews() {
         avatarImageView = GFAvatarImageView(frame: .zero)
         avatarImageView.downloadImage(from: user.avatarUrl)
-        view.addSubview(avatarImageView)
         
         usernameLabel       = GFTitleLabel(textAlignment: .left, fontSize: 34)
         usernameLabel.text  = user.login
-        view.addSubview(usernameLabel)
         
         nameLabel       = GFSecondaryTitleLabel(fontSize: 18)
         nameLabel.text  = user.name ?? ""
-        view.addSubview(nameLabel)
         
         locationImageView           = UIImageView()
         locationImageView.image     = SFSymbols.location
         locationImageView.tintColor = .secondaryLabel
         locationImageView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(locationImageView)
         
         locationLabel       = GFSecondaryTitleLabel(fontSize: 18)
         locationLabel.text  = user.location ?? "Not location included"
-        view.addSubview(locationLabel)
         
         bioLabel                = GFBodyLabel(textAlignment: .left)
         bioLabel.numberOfLines  = 3
         bioLabel.text           = user.bio ?? "No bio available"
-        view.addSubview(bioLabel)
+        
+        view.addSubviews(avatarImageView, usernameLabel, nameLabel, locationImageView, locationLabel, bioLabel)
     }
 
     func configureConstraints() {

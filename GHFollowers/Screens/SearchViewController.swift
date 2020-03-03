@@ -54,17 +54,16 @@ class SearchViewController: UIViewController {
     
     private func configureViews() {
         logoImageView = UIImageView()
-        view.addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.image = Images.ghLogo
         
         usernameTextField = GFTextField()
         usernameTextField.delegate = self
-        view.addSubview(usernameTextField)
         
         fetchFollowersButton = GFButton(backgroundColor: .systemGreen, title: "Get Followers")
         fetchFollowersButton.addTarget(self, action: #selector(pushToFollowerListViewController), for: .touchUpInside)
-        view.addSubview(fetchFollowersButton)
+        
+        view.addSubviews(logoImageView, usernameTextField, fetchFollowersButton)
     }
     
     private func configureConstraints() {

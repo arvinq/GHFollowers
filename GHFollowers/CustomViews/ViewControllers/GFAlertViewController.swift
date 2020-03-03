@@ -49,17 +49,16 @@ class GFAlertViewController: UIViewController {
         
         titleLabel      = GFTitleLabel(textAlignment: .center, fontSize: 20)
         titleLabel.text = alertTitle ?? "No Alert Title"
-        containerView.addSubview(titleLabel)
         
         bodyLabel               = GFBodyLabel(textAlignment: .center)
         bodyLabel.text          = bodyMessage ?? "No message"
         bodyLabel.numberOfLines = 4
-        containerView.addSubview(bodyLabel)
         
         actionButton = GFButton(backgroundColor: .systemPink, title: "Ok")
         actionButton.setTitle(buttonTitle ?? "Ok", for: .normal)
         actionButton.addTarget(self, action: #selector(dismissViewController), for: .touchUpInside)
-        containerView.addSubview(actionButton)
+        
+        containerView.addSubviews(titleLabel, bodyLabel, actionButton)
     }
     
     private func configureConstraints() {

@@ -29,13 +29,11 @@ class GFItemInfoView: UIView {
         symbolImageView = UIImageView()
         symbolImageView.translatesAutoresizingMaskIntoConstraints = false
         symbolImageView.tintColor = .label
-        self.addSubview(symbolImageView)
         
         titleLabel = GFTitleLabel(textAlignment: .left, fontSize: 14)
-        self.addSubview(titleLabel)
-        
         countLabel = GFTitleLabel(textAlignment: .center, fontSize: 14)
-        self.addSubview(countLabel)
+        
+        addSubviews(symbolImageView, titleLabel, countLabel)
     }
     
     private func configureConstraints() {

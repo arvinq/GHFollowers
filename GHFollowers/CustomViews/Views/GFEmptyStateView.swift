@@ -36,12 +36,12 @@ class GFEmptyStateView: UIView {
         messageLabel                = GFTitleLabel(textAlignment: .center, fontSize: 28)
         messageLabel.textColor      = .secondaryLabel
         messageLabel.numberOfLines  = 3
-        addSubview(messageLabel)
         
         imageContainer          = UIImageView()
         imageContainer.image    = Images.emptyStateLogo
         imageContainer.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(imageContainer)
+        
+        addSubviews(messageLabel, imageContainer)
     }
     
     func configureConstraints() {

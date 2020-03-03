@@ -31,12 +31,11 @@ class FavoriteCell: UITableViewCell {
     
     func configureViews() {
         avatarImage = GFAvatarImageView(frame: .zero)
-        addSubview(avatarImage)
-        
         usernameLabel = GFTitleLabel(textAlignment: .left, fontSize: 26)
-        addSubview(usernameLabel)
         
         accessoryType = .disclosureIndicator
+        
+        addSubviews(avatarImage, usernameLabel)
     }
     
     func configureConstraints() {
