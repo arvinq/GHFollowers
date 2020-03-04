@@ -35,6 +35,7 @@ class FavoritesListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.reuseId)
+        tableView.removeExcessCells()
         view.addSubview(tableView)
     }
 
