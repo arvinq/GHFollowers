@@ -13,6 +13,10 @@ class UserInfoViewController: UIViewController {
     var username: String!
     var doneButton: UIBarButtonItem!
     
+    //scrollView and contentView
+    private var scrollView: UIScrollView!
+    private var contentView: UIView!
+    
     // ChildVC containers
     private var headerView: UIView          = UIView()
     private var itemViewProfile: UIView     = UIView()
@@ -33,11 +37,16 @@ class UserInfoViewController: UIViewController {
         doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
         navigationItem.setLeftBarButton(doneButton, animated: true)
         
-        itemViews.append(contentsOf: [headerView, itemViewProfile, itemViewFollower, dateLabel])
+        scrollView = UIScrollView()
+        view.addSubview(scrollView)
         
+        contentView = UIView()
+        scrollView.addSubview(contentView)
+        
+        itemViews.append(contentsOf: [headerView, itemViewProfile, itemViewFollower, dateLabel])
         for itemView in itemViews {
             itemView.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(itemView)
+            contentView.addSubview(itemView)
         }
     }
     
@@ -45,16 +54,25 @@ class UserInfoViewController: UIViewController {
         let padding: CGFloat = 20.0
         let itemHeight: CGFloat = 140.0
         
+        scrollView.pinToEdges(of: view)
+        contentView.pinToEdges(of: scrollView)
+        
         // Configuring the leading and trailing constraints of the itemViews
         for itemView in itemViews {
             NSLayoutConstraint.activate([
-                itemView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-                itemView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding)
+                itemView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
+                itemView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding)
             ])
         }
         
         NSLayoutConstraint.activate([
-            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            // we need to set contentView's width and height in addition to pinning it
+            // to scrollView's edges so that we can make it movable inside scrollView.
+            // This will greatly take into effect should our content becomes large enough.
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.heightAnchor.constraint(equalToConstant: 650),
+            
+            headerView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
             headerView.heightAnchor.constraint(equalToConstant: 210),
             
             itemViewProfile.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding),
