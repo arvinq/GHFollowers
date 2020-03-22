@@ -9,13 +9,15 @@
 import UIKit
 
 class GFTabBarController: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        delegate = self
+        
         //handle every tabBar in our whole app
         UITabBar.appearance().tintColor = .systemGreen
-        viewControllers = [createSearchNavigationController(), createFavoritesNavigationController()]
+        viewControllers = [createSearchNavigationController(), createFavoritesNavigationController(), createCustomVC()]
     }
 
     func createSearchNavigationController() -> UINavigationController {
@@ -34,4 +36,19 @@ class GFTabBarController: UITabBarController {
         return UINavigationController(rootViewController: favoritesListVC)
     }
 
+    func createCustomVC() -> UIViewController {
+        let customVC = CustomViewController()
+        customVC.title = "Custom"
+        customVC.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 2)
+        
+        
+        return  UINavigationController(rootViewController: customVC)
+    }
+    
+}
+
+extension GFTabBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return SlideInTransition(viewControllers: tabBarController.viewControllers)
+    }
 }
